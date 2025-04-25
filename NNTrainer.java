@@ -269,7 +269,61 @@ public class NNTrainer {
     }
 
     public void TestBigNeuralNetwork() {
+        ArrayList<Node> Random = new ArrayList<>();
+        ArrayList<Node> Nodes = new ArrayList<>();
+        Node HostOfNode;
+        ArrayList<Node> EmptyNodes = new ArrayList<>();
 
+        ArrayList<Weight> Weights = new ArrayList<>();
+        Weight HostOfWeight;
+
+        ArrayList<Integer> ChildWeightsID;
+        ArrayList<Integer> ChildNodesID;
+        ArrayList<Integer> ChildWeightIndex;
+        ArrayList<Integer> ChildNodesIndex;
+        ArrayList<Integer> ParentNodeID;
+        ArrayList<Integer> ParentNodeIndex;
+
+        ArrayList<Integer> EmptyInteger = new ArrayList<>();
+
+        //Nodes
+        ParentNodeID = new ArrayList<>(); ChildWeightsID = new ArrayList<>(); ChildNodesID = new ArrayList<>();
+        ChildWeightsID.add(6);ChildWeightsID.add(8); ChildNodesID.add(7); ChildNodesID.add(8);
+        HostOfNode = new Node(0, 3.2, 1, ChildWeightsID, ChildNodesID, EmptyInteger, EmptyInteger, ParentNodeID, EmptyInteger, -1);
+        Nodes.add(HostOfNode.MakeACopyOfNode());
+
+        ParentNodeID = new ArrayList<>(); ChildWeightsID = new ArrayList<>(); ChildNodesID = new ArrayList<>();
+        ChildWeightsID.add(0);ChildWeightsID.add(1);ChildWeightsID.add(14); ChildNodesID.add(4); ChildNodesID.add(7);ChildNodesID.add(9);
+        HostOfNode = new Node(1, 2.1, 1, ChildWeightsID, ChildNodesID, EmptyInteger, EmptyInteger, ParentNodeID, EmptyInteger, -1);
+        Nodes.add(HostOfNode.MakeACopyOfNode());
+
+        ParentNodeID = new ArrayList<>(); ChildWeightsID = new ArrayList<>(); ChildNodesID = new ArrayList<>();
+        ChildWeightsID.add(19); ChildWeightsID.add(15); ChildNodesID.add(9); ChildNodesID.add(11);
+        HostOfNode = new Node(2, -1, 1, ChildWeightsID, ChildNodesID, EmptyInteger, EmptyInteger, ParentNodeID, EmptyInteger, -1);
+        Nodes.add(HostOfNode.MakeACopyOfNode());
+
+        ParentNodeID = new ArrayList<>(); ChildWeightsID = new ArrayList<>(); ChildNodesID = new ArrayList<>();
+        ParentNodeID.add(1);ParentNodeID.add(8);ParentNodeID.add(7);
+        HostOfNode = new Node(3, 2.14, 1, ChildWeightsID, ChildNodesID, EmptyInteger, EmptyInteger, ParentNodeID, EmptyInteger, -1);
+        Nodes.add(HostOfNode.MakeACopyOfNode());
+
+        ParentNodeID = new ArrayList<>(); ChildWeightsID = new ArrayList<>(); ChildNodesID = new ArrayList<>();
+        ParentNodeID.add(2);ParentNodeID.add(8);ParentNodeID.add(10);
+        HostOfNode = new Node(4, 1.97, 3, ChildWeightsID, ChildNodesID, EmptyInteger, EmptyInteger, ParentNodeID, EmptyInteger, -1);
+        Nodes.add(HostOfNode.MakeACopyOfNode());
+
+        ParentNodeID = new ArrayList<>(); ChildWeightsID = new ArrayList<>(); ChildNodesID = new ArrayList<>();
+        ParentNodeID.add(2);ParentNodeID.add(8);ParentNodeID.add(10);
+        HostOfNode = new Node(5, 1.97, 3, ChildWeightsID, ChildNodesID, EmptyInteger, EmptyInteger, ParentNodeID, EmptyInteger, -1);
+        Nodes.add(HostOfNode.MakeACopyOfNode());
+
+
+
+
+        ParentNodeID = new ArrayList<>(); ChildWeightsID = new ArrayList<>(); ChildNodesID = new ArrayList<>();
+        ParentNodeID.add(0); ChildWeightsID.add(0); ChildNodesID.add(0);
+        HostOfNode = new Node(0, 3.2, 1, ChildWeightsID, ChildNodesID, EmptyInteger, EmptyInteger, ParentNodeID, EmptyInteger, -1);
+        Nodes.add(HostOfNode.MakeACopyOfNode());
     }
 
     public void RunStartCode() {

@@ -632,4 +632,3 @@ public class NeuralNetwork {
 //Important Values:
 //Node's bias can go from -3 -> 5
 //Weights go from -2 -> 3
-

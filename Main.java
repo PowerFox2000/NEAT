@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+
+
+//        NNTrainer Train1 = new NNTrainer(1, true, 1, 0);// random values XD
+//
+//        Train1.RunStartCode();
+
+//        NNTrainer Train2 = new NNTrainer(20, true, 50, 5, false);
+//
+//        Train2.RunFirstTraining();
+
+        NNTrainer TestBIG = new NNTrainer(1, true, 50, 1, false);
+
+        TestBIG.TestBigNeuralNetwork();
+
+
+    }
+}
