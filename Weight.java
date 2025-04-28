@@ -1,5 +1,4 @@
 
-
 public class Weight {
 
     private double Value, Weight;
@@ -7,9 +6,8 @@ public class Weight {
     private int ParentNodeID, ParentNodeIndex, ChildNodeID, ChildNodeIndex;
     private boolean Enabled;
 
-    public Weight(int ID, double Value, double Weight, int ParentNodeID, int ParentNodeIndex, int ChildNodeId, int ChildNodeIndex, int InnovationNumber, boolean Enabled) {
+    public Weight(int ID, double Weight, int ParentNodeID, int ParentNodeIndex, int ChildNodeId, int ChildNodeIndex, int InnovationNumber, boolean Enabled) {
         this.ID = ID;
-        this.Value = Value;
         this.Weight = Weight;
         this.ChildNodeIndex = ChildNodeIndex;
         this.ChildNodeID = ChildNodeId;
@@ -76,12 +74,11 @@ public class Weight {
 
     public Weight MakeACopyOfWeight() {
 
-        double NValue, NWeight;
+        double NWeight;
         int NID, NInnovationNumber;
         int NParentNodeID, NParentNodeIndex, NChildNodeID, NChildNodeIndex;
         boolean NEnabled;
 
-        NValue = Value;
         NWeight = Weight;
         NID = ID;
         NInnovationNumber = InnovationNumber;
@@ -91,7 +88,7 @@ public class Weight {
         NChildNodeIndex = ChildNodeIndex;
         NEnabled = Enabled;
 
-        Weight NewWeight = new Weight(NID ,NValue, NWeight, NParentNodeID, NParentNodeIndex, NChildNodeID, NChildNodeIndex, NInnovationNumber, NEnabled);
+        Weight NewWeight = new Weight(NID , NWeight, NParentNodeID, NParentNodeIndex, NChildNodeID, NChildNodeIndex, NInnovationNumber, NEnabled);
 
         return NewWeight;
     }

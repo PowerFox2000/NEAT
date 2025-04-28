@@ -1,4 +1,5 @@
 
+
 import javax.naming.InsufficientResourcesException;
 import java.util.ArrayList;
 import java.util.Currency;
@@ -240,7 +241,7 @@ public class NeuralNetwork {
 
         if (Information.get(0) == 1) {
             //System.out.println("New Weight Created, Here is all the information. Its ID: " + Weights.size() + " first Information: " + Information.get(1) + " second information: " + Information.get(2) + " third information: " + Information.get(3));
-            Weight CreateWeightHost = new Weight(Weights.size(), 0, random.nextDouble(-2.0, 3.0), Information.get(1), -1, Information.get(2), -1, Information.get(3), true);
+            Weight CreateWeightHost = new Weight(Weights.size(), random.nextDouble(-2.0, 3.0), Information.get(1), -1, Information.get(2), -1, Information.get(3), true);
             Weights.add(CreateWeightHost);
 
 
@@ -285,11 +286,11 @@ public class NeuralNetwork {
             int FirstWeightID = Weights.size();
             int SecondWeightID = Weights.size() + 1;
 
-            Weight FirstWeight = new Weight(Weights.size(), 0, Weight, Information.get(1), -1, Information.get(2), -1, Information.get(6), true);
+            Weight FirstWeight = new Weight(Weights.size(), Weight, Information.get(1), -1, Information.get(2), -1, Information.get(6), true);
 
             Weights.add(FirstWeight);
 
-            Weight SecondWeight = new Weight(Weights.size(), 0, random.nextDouble(-2.0, 3.0), Information.get(3), -1, Information.get(4), -1, Information.get(7), true);
+            Weight SecondWeight = new Weight(Weights.size(), random.nextDouble(-2.0, 3.0), Information.get(3), -1, Information.get(4), -1, Information.get(7), true);
 
             Weights.add(SecondWeight);
 
