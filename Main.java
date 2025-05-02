@@ -8,13 +8,13 @@ public class Main {
 //
 //        Train1.RunStartCode();
 
-//        NNTrainer Train2 = new NNTrainer(20, true, 50, 5, false);
+        NNTrainer Train2 = new NNTrainer(20, true, 50, 5, false);
+
+        Train2.RunFirstTraining();
+
+//        NNTrainer TestBIG = new NNTrainer(1, true, 50, 1, false);
 //
-//        Train2.RunFirstTraining();
-
-        NNTrainer TestBIG = new NNTrainer(1, true, 50, 1, false);
-
-        TestBIG.TestBigNeuralNetwork();
+//        TestBIG.TestBigNeuralNetwork();
 
 
     }

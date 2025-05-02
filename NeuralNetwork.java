@@ -12,6 +12,7 @@ public class NeuralNetwork {
     private ArrayList<Double> Input;
     private ArrayList<Double> Output;
 
+    private ArrayList<Integer> IDInEXEOrder;
 
     private Random random = new Random();
 
@@ -240,15 +241,20 @@ public class NeuralNetwork {
         ArrayList<Integer> Information = new ArrayList<>(ToCheck);
 
         if (Information.get(0) == 1) {
+            
+
+
+
+
             //System.out.println("New Weight Created, Here is all the information. Its ID: " + Weights.size() + " first Information: " + Information.get(1) + " second information: " + Information.get(2) + " third information: " + Information.get(3));
             Weight CreateWeightHost = new Weight(Weights.size(), random.nextDouble(-2.0, 3.0), Information.get(1), -1, Information.get(2), -1, Information.get(3), true);
             Weights.add(CreateWeightHost);
 
 
-            for (int i = 0; i < Nodes.size(); i ++) {
-                Nodes.get(i).ReturnParentNodesID();
-                //remove this for loop
-            }
+//            for (int i = 0; i < Nodes.size(); i ++) {
+//                Nodes.get(i).ReturnParentNodesID();
+//                //remove this for loop
+//            }
 
             for (int i = 0; i < Nodes.size(); i++) {
                 Node HostOfNode = Nodes.get(i);
@@ -266,7 +272,13 @@ public class NeuralNetwork {
                 if (HostOfNode.ReturnID() == Information.get(2)) {
                     //System.out.println("EAB - ID " + HostOfNode.ReturnID() + " == " + Information.get(2) + " Parents: " + HostOfNode.ReturnParentNodesID() + " Will Add: " + Information.get(1));
                     HostOfNode.AddParentNode(Information.get(1));
-                    Nodes.get(i).ReturnParentNodesID();//remove this
+                    System.out.println(Information.get(1));
+                    System.out.println(Nodes.get(i).ReturnParentNodesID());//remove this
+                    double time = System.currentTimeMillis();
+                    PrintNeuralNetwork();
+                    while (System.currentTimeMillis() - time < 2000) {
+
+                    }
                 }
             }
         }
@@ -396,6 +408,7 @@ public class NeuralNetwork {
         //creating a matrix to know who has who as parent and then sort them
 
         NodesInEXEOrder = new ArrayList<>();
+        IDInEXEOrder = new ArrayList<>();
 
         ArrayList<ArrayList<Integer>> StillHasParent = new ArrayList<>();
         ArrayList<Integer> Parents;
@@ -435,6 +448,9 @@ public class NeuralNetwork {
                     Indexs ++;
                     NodesInEXEOrder.add(Nodes.get(RemoveParents));
                     HostOfNode = Nodes.get(RemoveParents);
+
+                    IDInEXEOrder.add(HostOfNode.ReturnID());
+
                     IsProcessed.set(RemoveParents, true);
                     Parents.add(-1); // Prevent this node from being selected again
                     HostOfNode.SetIndexInExe(Indexs);
@@ -489,12 +505,13 @@ public class NeuralNetwork {
         if (!ShouldWork) {
             System.out.println("ABA - Something went wrong");
         } else {
-            //System.out.println("----------------------\nSorted With No Issues\n----------------------");
+            System.out.println("----------------------\nSorted With No Issues\n----------------------");
         }
 
         //Time to update everything to be able to run
 
         for (int i = 0; i < Nodes.size();i++) {
+
             HostOfNode = Nodes.get(i);
 
             ArrayList<Integer> ToTurnInIndexs = HostOfNode.ReturnChildNodesID();
@@ -525,8 +542,8 @@ public class NeuralNetwork {
 
             CorrectIndexs = new ArrayList<>();
             for (int j = 0; j < ToTurnInIndexs.size(); j ++) {
-                CorrectIndexs.add(FindIndexOfNode(ToTurnInIndexs.get(j)));
-                //System.out.println("ABB - C");
+                CorrectIndexs.add(FindIndexOfWeight(ToTurnInIndexs.get(j)));
+                //System.out.println("ABB - C - ID: " + HostOfNode.ReturnID() + "\n");
             }
             HostOfNode.SetChildWeightIndex(CorrectIndexs);
         }
@@ -536,13 +553,14 @@ public class NeuralNetwork {
 
             //-------------------------------------------------------------------------
             int ToTurnInIndexes = HostOfWeights.ReturnChildNodeID();
-            HostOfWeights.SetChildNodeIndex(FindIndexOfWeight(ToTurnInIndexes));
+            HostOfWeights.SetChildNodeIndex(FindIndexOfNode(ToTurnInIndexes));
             //-------------------------------------------------------------------------
             ToTurnInIndexes = HostOfWeights.ReturnParentNodeID();
-            HostOfWeights.SetParentNodeIndex(FindIndexOfWeight(ToTurnInIndexes));
+            HostOfWeights.SetParentNodeIndex(FindIndexOfNode(ToTurnInIndexes));
         }
 
-        //System.out.println("Updated everything!");
+        System.out.println("Updated everything!");
+        System.out.println("In order: " + IDInEXEOrder);
 
 
 
@@ -552,13 +570,18 @@ public class NeuralNetwork {
         Node HostOfNode;
         int Index = -1;
 
+        //System.out.print("Searching for: " + IDToFind);
+
         for (int i = 0; i < Nodes.size(); i ++) {
             HostOfNode = Nodes.get(i);
+            //System.out.print("; " + HostOfNode.ReturnID() + " ");
             if (HostOfNode.ReturnID() == IDToFind) {
                 Index = i;
                 break;
             }
         }
+
+        //System.out.println("");
 
         if (Index == -1) {
             System.out.println("ABB - issues: " + IDToFind + " Size " + Nodes.size());
@@ -572,16 +595,21 @@ public class NeuralNetwork {
         Weight HostOfWeight;
         int Index = -1;
 
+        //System.out.print("Searching for: " + IDToFind);
+
         for (int i = 0; i < Weights.size(); i ++) {
             HostOfWeight = Weights.get(i);
+            //System.out.print("; " + HostOfWeight.ReturnID() + " ");
             if (HostOfWeight.ReturnID() == IDToFind) {
                 Index = i;
                 break;
             }
         }
 
+        //System.out.println("");
+
         if (Index == -1) {
-            System.out.println("ABC - Issue here");
+            System.out.println("ABC - Issue here: " + IDToFind + " Size " + Weights.size());
         }
 
         return Index;

@@ -125,7 +125,7 @@ public class NNTrainer {
 
                     }
                     Scores.add(NNScore);
-                    HostOfNeuralNetwork.PrintNeuralNetwork();
+                    //HostOfNeuralNetwork.PrintNeuralNetwork();
 
                     //System.out.println("Calculated NN: " + HostOfNeuralNetwork.ReturnNetworkID());
 
@@ -150,13 +150,6 @@ public class NNTrainer {
                 indices.sort((a, b) -> Integer.compare(Scores.get(b), Scores.get(a)));
 
                 ArrayList<NeuralNetwork> NNsToKeep = new ArrayList<>();
-
-                System.out.println("\nA1 ---------------------------------------------------------------------------------------------------");
-
-                double time = System.currentTimeMillis();
-                while (System.currentTimeMillis() - time < 1000) {
-
-                }
 
 
                 if (Scores.size() != NNs.size()) {
@@ -199,6 +192,14 @@ public class NNTrainer {
 
                                 for (int j = 0; j < AllInnovation.size(); j++) {
                                     ArrayList<Integer> InvnovationInformations = AllInnovation.get(j);
+                                    PrintInnovation();
+                                    System.out.println("Info 1: " + Informations.get(1) + " Info 2 " + InvnovationInformations.get(2));
+
+                                    double time = System.currentTimeMillis();
+                                    while (System.currentTimeMillis() - time < 3000) {
+
+                                    }
+
                                     if (InvnovationInformations.get(1) == Informations.get(1) && InvnovationInformations.get(2) == Informations.get(2)) {
                                         CanCreate = false;
                                         Informations.set(3, j);
@@ -213,6 +214,7 @@ public class NNTrainer {
                                     TempInt.add(Informations.get(2));
                                     AllInnovation.add(TempInt);
                                     InnovationNumber++;
+                                    System.out.println("NEW INNOVATION WAS CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + TempInt);
                                 }
 
                                 HostOfNeuralNetworkToMutate.CreateConnection(Informations);
@@ -403,15 +405,30 @@ public class NNTrainer {
         HostOfWeight = new Weight(19,  1.17,  3, -1,  9, -1,  19, true);
         Weights.add(HostOfWeight.MakeACopyOfWeight());
 
+
+
+
         NeuralNetwork HostOfNeuralNetwork = new NeuralNetwork(Nodes, EmptyNodes, Weights);
+
+        ArrayList<Double> Inputs = new ArrayList<>();
+        Inputs.add(0.0);
+        Inputs.add(1.0);
+        Inputs.add(1.0);
+        Inputs.add(0.0);
+
+        HostOfNeuralNetwork.PrintNeuralNetwork();
 
         HostOfNeuralNetwork.SortNodesInEXE();
 
         ArrayList<Double> Outputs = new ArrayList<>();
 
+        HostOfNeuralNetwork.SetInputs(Inputs);
+
         HostOfNeuralNetwork.RunNeuralNetwork();
         Outputs = HostOfNeuralNetwork.ReturnOutputs();
         System.out.println("Outputs: " + Outputs);
+
+
 
 
 
@@ -536,5 +553,16 @@ public class NNTrainer {
 
         DefaultToMutate = new NeuralNetwork(Nodes, EmptyNode, Weights);
 
+    }
+
+    private void PrintInnovation() {
+
+        System.out.println("---------------Printing Innovations-------------");
+        for (int i = 0; i < AllInnovation.size(); i++) {
+            ArrayList<Integer> Innovation = AllInnovation.get(i);
+            System.out.println(Innovation);
+
+        }
+        System.out.println("------------------------------------------------");
     }
 }
