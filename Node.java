@@ -141,25 +141,25 @@ public class Node {
 
     public Node MakeACopyOfNode() {
 
-         double NBias;
-         ArrayList<Integer> NChildWeightsID, NChildNodesID, NChildWeightsIndex, NChildNodesIndex, NParentNodesID, NParentNodesIndex;
-         int NID, NState, NIndexInExe;
+        double NBias;
+        ArrayList<Integer> NChildWeightsID, NChildNodesID, NChildWeightsIndex, NChildNodesIndex, NParentNodesID, NParentNodesIndex;
+        int NID, NState, NIndexInExe;
 
-         NBias = Bias;
-         NID = ID;
-         NState = State;
-         NIndexInExe = IndexInExe;
+        NBias = Bias;
+        NID = ID;
+        NState = State;
+        NIndexInExe = IndexInExe;
 
-         NChildWeightsID = new ArrayList<>();
-         NChildWeightsIndex = new ArrayList<>();
-         NChildNodesID = new ArrayList<>();
-         NChildNodesIndex = new ArrayList<>();
-         NParentNodesID = new ArrayList<>();
-         NParentNodesIndex = new ArrayList<>();
+        NChildWeightsID = new ArrayList<>();
+        NChildWeightsIndex = new ArrayList<>();
+        NChildNodesID = new ArrayList<>();
+        NChildNodesIndex = new ArrayList<>();
+        NParentNodesID = new ArrayList<>();
+        NParentNodesIndex = new ArrayList<>();
 
-         for (Integer i : ChildWeightsID) {
-             NChildWeightsID.add(i);
-         }
+        for (Integer i : ChildWeightsID) {
+            NChildWeightsID.add(i);
+        }
 
         for (Integer i : ChildWeightsIndex) {
             NChildWeightsIndex.add(i);
@@ -189,4 +189,3 @@ public class Node {
     }
 
 }
-

@@ -8,14 +8,17 @@ public class Main {
 //
 //        Train1.RunStartCode();
 
-        NNTrainer Train2 = new NNTrainer(20, true, 50, 5, false);
-
-        Train2.RunFirstTraining();
+//        NNTrainer Train2 = new NNTrainer(20, true, 50, 5, false);
+//
+//        Train2.RunFirstTraining();
 
 //        NNTrainer TestBIG = new NNTrainer(1, true, 50, 1, false);
 //
 //        TestBIG.TestBigNeuralNetwork();
 
+        NNTrainer TrainingMutation = new NNTrainer(1, true, 50, 1, false);
+
+        TrainingMutation.MutateTest();
 
     }
 }

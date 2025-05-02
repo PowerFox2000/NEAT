@@ -1,4 +1,5 @@
 
+
 public class Weight {
 
     private double Value, Weight;

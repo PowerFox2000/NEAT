@@ -1,5 +1,6 @@
 
 
+
 import javax.naming.InsufficientResourcesException;
 import java.util.ArrayList;
 import java.util.Currency;
@@ -94,17 +95,22 @@ public class NeuralNetwork {
         for (int Update = 0; Update<WIndexs.size();Update++) {
             Weight HostOfWeightsClassToUpdate;
             Node HostOfNodesClassToUpdate;
-            try {
-                HostOfNodesClassToUpdate = NodesInEXEOrder.get(NIndexs.get(Update));
-                HostOfWeightsClassToUpdate = Weights.get(WIndexs.get(Update));
-                if (HostOfWeightsClassToUpdate.ReturnEnabled()) {
-                    HostOfNodesClassToUpdate.UpdateValues(Value * HostOfWeightsClassToUpdate.ReturnWeight());
-                }
-
-            } catch (Exception e) {
-                PrintNeuralNetwork();
-
-                System.exit(0);
+//            try {
+//                HostOfNodesClassToUpdate = NodesInEXEOrder.get(NIndexs.get(Update));
+//                HostOfWeightsClassToUpdate = Weights.get(WIndexs.get(Update));
+//                if (HostOfWeightsClassToUpdate.ReturnEnabled()) {
+//                    HostOfNodesClassToUpdate.UpdateValues(Value * HostOfWeightsClassToUpdate.ReturnWeight());
+//                }
+//
+//            } catch (Exception e) {
+//                PrintNeuralNetwork();
+//
+//                System.exit(0);
+//            }
+            HostOfNodesClassToUpdate = NodesInEXEOrder.get(NIndexs.get(Update));
+            HostOfWeightsClassToUpdate = Weights.get(WIndexs.get(Update));
+            if (HostOfWeightsClassToUpdate.ReturnEnabled()) {
+                HostOfNodesClassToUpdate.UpdateValues(Value * HostOfWeightsClassToUpdate.ReturnWeight());
             }
         }
     }
@@ -241,43 +247,47 @@ public class NeuralNetwork {
         ArrayList<Integer> Information = new ArrayList<>(ToCheck);
 
         if (Information.get(0) == 1) {
-            
 
 
+            boolean Createable = true;
 
-
-            //System.out.println("New Weight Created, Here is all the information. Its ID: " + Weights.size() + " first Information: " + Information.get(1) + " second information: " + Information.get(2) + " third information: " + Information.get(3));
-            Weight CreateWeightHost = new Weight(Weights.size(), random.nextDouble(-2.0, 3.0), Information.get(1), -1, Information.get(2), -1, Information.get(3), true);
-            Weights.add(CreateWeightHost);
-
-
-//            for (int i = 0; i < Nodes.size(); i ++) {
-//                Nodes.get(i).ReturnParentNodesID();
-//                //remove this for loop
-//            }
-
-            for (int i = 0; i < Nodes.size(); i++) {
-                Node HostOfNode = Nodes.get(i);
-
-                //System.out.println("\nBtw everything under nn id is: " + IDOfNeuralNetwork + " ---------------------------------------");
-                //System.out.println("EAC - ID: " + HostOfNode.ReturnID() + " Parents: " + HostOfNode.ReturnParentNodesID());
-
-                if (HostOfNode.ReturnID() == Information.get(1)) {
-                    //System.out.println("EAA - ID: " + HostOfNode.ReturnID() + " == " + Information.get(1) + ", ChildNodes: " + HostOfNode.ReturnChildNodesID() + " New thing to add " + Information.get(2) + ", ChildWeights " + HostOfNode.ReturnChildWeightsID() + ", New thing to add: " + (Weights.size()-1) + ", btw here are its parents: " + HostOfNode.ReturnParentNodesID() );
-                    HostOfNode.AddChildNode(Information.get(2));
-                    HostOfNode.AddChildWeight(Weights.size()-1);
-
+            for (int i = 0; i < Weights.size(); i++) {
+                Weight HostOfWeight = Weights.get(i);
+                if (HostOfWeight.ReturnInnovationNumber() == Information.get(3)) {
+                    Createable = false;
                 }
+            }
 
-                if (HostOfNode.ReturnID() == Information.get(2)) {
-                    //System.out.println("EAB - ID " + HostOfNode.ReturnID() + " == " + Information.get(2) + " Parents: " + HostOfNode.ReturnParentNodesID() + " Will Add: " + Information.get(1));
-                    HostOfNode.AddParentNode(Information.get(1));
-                    System.out.println(Information.get(1));
-                    System.out.println(Nodes.get(i).ReturnParentNodesID());//remove this
-                    double time = System.currentTimeMillis();
-                    PrintNeuralNetwork();
-                    while (System.currentTimeMillis() - time < 2000) {
 
+
+
+            if (Createable) {
+                //System.out.println("New Weight Created, Here is all the information. Its ID: " + Weights.size() + " first Information: " + Information.get(1) + " second information: " + Information.get(2) + " third information: " + Information.get(3));
+                Weight CreateWeightHost = new Weight(Weights.size(), random.nextDouble(-2.0, 3.0), Information.get(1), -1, Information.get(2), -1, Information.get(3), true);
+                Weights.add(CreateWeightHost);
+
+
+                //            for (int i = 0; i < Nodes.size(); i ++) {
+                //                Nodes.get(i).ReturnParentNodesID();
+                //                //remove this for loop
+                //            }
+
+                for (int i = 0; i < Nodes.size(); i++) {
+                    Node HostOfNode = Nodes.get(i);
+
+                    //System.out.println("\nBtw everything under nn id is: " + IDOfNeuralNetwork + " ---------------------------------------");
+                    //System.out.println("EAC - ID: " + HostOfNode.ReturnID() + " Parents: " + HostOfNode.ReturnParentNodesID());
+
+                    if (HostOfNode.ReturnID() == Information.get(1)) {
+                        //System.out.println("EAA - ID: " + HostOfNode.ReturnID() + " == " + Information.get(1) + ", ChildNodes: " + HostOfNode.ReturnChildNodesID() + " New thing to add " + Information.get(2) + ", ChildWeights " + HostOfNode.ReturnChildWeightsID() + ", New thing to add: " + (Weights.size()-1) + ", btw here are its parents: " + HostOfNode.ReturnParentNodesID() );
+                        HostOfNode.AddChildNode(Information.get(2));
+                        HostOfNode.AddChildWeight(Weights.size() - 1);
+
+                    }
+
+                    if (HostOfNode.ReturnID() == Information.get(2)) {
+                        //System.out.println("EAB - ID " + HostOfNode.ReturnID() + " == " + Information.get(2) + " Parents: " + HostOfNode.ReturnParentNodesID() + " Will Add: " + Information.get(1));
+                        HostOfNode.AddParentNode(Information.get(1));
                     }
                 }
             }
@@ -505,7 +515,7 @@ public class NeuralNetwork {
         if (!ShouldWork) {
             System.out.println("ABA - Something went wrong");
         } else {
-            System.out.println("----------------------\nSorted With No Issues\n----------------------");
+            //System.out.println("----------------------\nSorted With No Issues\n----------------------");
         }
 
         //Time to update everything to be able to run
@@ -559,8 +569,8 @@ public class NeuralNetwork {
             HostOfWeights.SetParentNodeIndex(FindIndexOfNode(ToTurnInIndexes));
         }
 
-        System.out.println("Updated everything!");
-        System.out.println("In order: " + IDInEXEOrder);
+        //System.out.println("Updated everything!");
+        //System.out.println("In order: " + IDInEXEOrder);
 
 
 
