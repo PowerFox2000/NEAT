@@ -192,9 +192,13 @@ public class NNTrainer {
 
                                 for (int j = 0; j < AllInnovation.size(); j++) {
                                     ArrayList<Integer> InvnovationInformations = AllInnovation.get(j);
-                                    //PrintInnovation();
-                                    //System.out.println("Info 1: " + Informations.get(1) + " Info 2 " + InvnovationInformations.get(2));
+                                    PrintInnovation();
+                                    System.out.println("Info 1: " + Informations.get(1) + " Info 2 " + InvnovationInformations.get(2));
 
+                                    double time = System.currentTimeMillis();
+                                    while (System.currentTimeMillis() - time < 3000) {
+
+                                    }
 
                                     if (InvnovationInformations.get(1) == Informations.get(1) && InvnovationInformations.get(2) == Informations.get(2)) {
                                         CanCreate = false;
@@ -210,12 +214,12 @@ public class NNTrainer {
                                     TempInt.add(Informations.get(2));
                                     AllInnovation.add(TempInt);
                                     InnovationNumber++;
-                                    //System.out.println("NEW INNOVATION WAS CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + TempInt);
+                                    System.out.println("NEW INNOVATION WAS CREATED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + TempInt);
                                 }
 
                                 HostOfNeuralNetworkToMutate.CreateConnection(Informations);
 
-                                //System.out.println("ADDED Weight -----------------------------------\n");
+                                System.out.println("ADDED Weight -----------------------------------\n");
                             } else {
 
                                 NodesNumber++;
@@ -264,10 +268,6 @@ public class NNTrainer {
         }
 
         System.out.println("-----------------------------------\n              Finished              \n-----------------------------------");
-    }
-
-    public void MutateTest() {
-
     }
 
     public void TestBigNeuralNetwork() {
@@ -425,8 +425,19 @@ public class NNTrainer {
         HostOfNeuralNetwork.SetInputs(Inputs);
 
         HostOfNeuralNetwork.RunNeuralNetwork();
+
         Outputs = HostOfNeuralNetwork.ReturnOutputs();
         System.out.println("Outputs: " + Outputs);
+
+
+
+
+
+
+
+
+
+
 
     }
 

@@ -12,13 +12,10 @@ public class Main {
 //
 //        Train2.RunFirstTraining();
 
-//        NNTrainer TestBIG = new NNTrainer(1, true, 50, 1, false);
-//
-//        TestBIG.TestBigNeuralNetwork();
+        NNTrainer TestBIG = new NNTrainer(1, true, 50, 1, false);
 
-        NNTrainer TrainingMutation = new NNTrainer(1, true, 50, 1, false);
+        TestBIG.TestBigNeuralNetwork();
 
-        TrainingMutation.MutateTest();
 
     }
 }

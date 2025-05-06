@@ -65,6 +65,8 @@ public class Node {
 
         Value = 1 / (1 + Math.exp(-Sum)); // sigmoid
 
+        System.out.println("Printing Node: " + ID + ", Before Sigmoïd: " + ValueBeforeSigmoid + ", after: " + Value + "; here are all the inputs: " + InputValues);
+
     }
 
 
@@ -141,25 +143,25 @@ public class Node {
 
     public Node MakeACopyOfNode() {
 
-        double NBias;
-        ArrayList<Integer> NChildWeightsID, NChildNodesID, NChildWeightsIndex, NChildNodesIndex, NParentNodesID, NParentNodesIndex;
-        int NID, NState, NIndexInExe;
+         double NBias;
+         ArrayList<Integer> NChildWeightsID, NChildNodesID, NChildWeightsIndex, NChildNodesIndex, NParentNodesID, NParentNodesIndex;
+         int NID, NState, NIndexInExe;
 
-        NBias = Bias;
-        NID = ID;
-        NState = State;
-        NIndexInExe = IndexInExe;
+         NBias = Bias;
+         NID = ID;
+         NState = State;
+         NIndexInExe = IndexInExe;
 
-        NChildWeightsID = new ArrayList<>();
-        NChildWeightsIndex = new ArrayList<>();
-        NChildNodesID = new ArrayList<>();
-        NChildNodesIndex = new ArrayList<>();
-        NParentNodesID = new ArrayList<>();
-        NParentNodesIndex = new ArrayList<>();
+         NChildWeightsID = new ArrayList<>();
+         NChildWeightsIndex = new ArrayList<>();
+         NChildNodesID = new ArrayList<>();
+         NChildNodesIndex = new ArrayList<>();
+         NParentNodesID = new ArrayList<>();
+         NParentNodesIndex = new ArrayList<>();
 
-        for (Integer i : ChildWeightsID) {
-            NChildWeightsID.add(i);
-        }
+         for (Integer i : ChildWeightsID) {
+             NChildWeightsID.add(i);
+         }
 
         for (Integer i : ChildWeightsIndex) {
             NChildWeightsIndex.add(i);
@@ -189,3 +191,4 @@ public class Node {
     }
 
 }
+
